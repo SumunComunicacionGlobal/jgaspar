@@ -1,0 +1,164 @@
+@use '../abstracts/mixins' as *;
+
+#masthead {
+    position: sticky;
+    width: 100%;
+    z-index: 1000;
+    top: 0;
+    height: 7rem;
+
+    >.wp-block-group {
+        padding: var(--wp--preset--spacing--20) 0;
+        transition: height 0.3s ease-in-out;
+        height: 7rem;
+    }
+    .wp-block-navigation {
+        .wp-block-navigation__responsive-container.is-menu-open {
+            background-color: var(--wp--preset--color--primary) !important;
+            color: var(--wp--preset--color--neutral-white) !important;
+
+            .wp-block-navigation__container {
+                width: 100%;
+                align-items: center;
+                li.wp-block-navigation-item {
+                    opacity: 0;
+                    animation: fadeInNav 0.3s ease-in-out forwards;
+                    
+                    // Delay escalonado para cada elemento
+                    &:nth-child(1) { animation-delay: 0.1s; }
+                    &:nth-child(2) { animation-delay: 0.2s; }
+                    &:nth-child(3) { animation-delay: 0.3s; }
+                    &:nth-child(4) { animation-delay: 0.4s; }
+                    &:nth-child(5) { animation-delay: 0.5s; }
+                    &:nth-child(6) { animation-delay: 0.6s; }
+                    &:nth-child(7) { animation-delay: 0.7s; }
+                    &:nth-child(8) { animation-delay: 0.8s; }
+                    
+                    &:nth-child(-n+3) {
+                        width: 100%;
+                        a.wp-block-navigation-item__content{
+                            // Estilos para las primeras 3 elementos de navegación
+                            font-size: var(--wp--preset--font-size--display) !important; 
+                            font-family: var(--wp--preset--font-family--font-heading);
+                            border-bottom: 1px solid var(--wp--preset--color--neutral-white);
+                            width: 100%;
+                            text-align: center;
+                            text-transform: capitalize;
+                        } 
+
+                    } 
+
+
+                }
+            }
+
+            .wp-block-buttons {
+                width: 100%;
+                padding-top: 3rem;
+            } 
+        }
+
+        .wp-block-navigation__responsive-container:not(.is-menu-open){
+            a.wp-block-navigation-item__content {
+
+                @media ($above-tablet) {
+                    &::before {
+                        content: '>';
+                        margin-right: 0.5rem;
+
+                        &:hover {
+                            color: var(--wp--preset--color--primary);
+                        }
+                    }
+                }
+
+                :hover {
+                    color: var(--wp--preset--color--primary);
+
+                }
+            }
+
+            a.wp-block-button__link {
+                border: 1px solid currentColor;
+                padding: 0.5rem 1rem;
+            }
+        }
+        
+    }
+}
+
+
+
+
+
+@media ($below-tablet) {
+  .wp-block-navigation__responsive-container:not(.hidden-by-default):not(.is-menu-open) {
+    background-color: inherit;
+    display: none;
+    position: relative;
+    width: 100%;
+    z-index: auto;
+  }
+
+  .wp-block-navigation__responsive-container.is-menu-open {
+    height: 100dvh;
+  }
+}
+
+@media ($below-tablet) {
+  .wp-block-navigation__responsive-container-open:not(.always-shown) {
+    display: block;
+    transform: none !important;
+  }
+}
+
+
+.wp-block-navigation__responsive-container-close svg, .wp-block-navigation__responsive-container-open svg {
+    width: 4rem;
+    height: 4rem;
+    
+}
+
+.wp-block-navigation__responsive-container-open svg {
+    fill: var(--wp--preset--color--primary);
+}
+
+
+body.scrolled #masthead {
+    .wp-block-navigation__responsive-container-open { 
+        display: block;
+        position: fixed;
+        right: 3rem;
+    }
+
+    .wp-block-site-title {
+        position: fixed;
+        animation: fadeInNav 0.3s ease-in-out forwards;
+        color: var(--wp--preset--color--primary);
+    }
+
+     >.wp-block-group {
+        transition: height 0.3s ease-in-out;
+    }
+
+    nav.wp-block-navigation {
+        flex-direction: row-reverse;
+        gap: 0;
+        flex-wrap: nowrap;
+    }
+
+}
+
+
+
+// Keyframe para la animación del menu
+@keyframes fadeInNav {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

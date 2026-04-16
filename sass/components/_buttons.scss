@@ -1,0 +1,93 @@
+@use '../abstracts/mixins' as *;
+
+.wp-block-buttons .wp-block-button:not([class*="-with-arrow"]) .wp-block-button__link {
+	transition: transform 0.3s ease;
+	
+	&:hover {
+		transform: scale(1.1);
+	}
+
+	&:has(img) {
+		display: flex;
+		justify-content: center;
+		align-items: flex-start;
+		gap: 0.5rem;
+	}
+}
+
+.wp-block-button.is-style-with-arrow .wp-block-button__link,
+.wp-block-button.is-style-outline-with-arrow .wp-block-button__link,
+.wp-block-query .wp-block-post a.wp-block-post-excerpt__more-link {
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	gap: 0.5rem;
+	transition: 0.3s ease;
+
+	&:hover::after {
+		transform: translateX(1rem);
+	}
+
+	&:after {
+		content: '';
+		display: inline-block;
+		width: 24px;
+		height: 24px;
+		background-color: currentColor; /* Esto asegura que el color del SVG coincida con el color del texto */
+		mask-image: url(./assets/icons/icon-arrow-btn.svg);
+		mask-size: cover;
+		mask-repeat: no-repeat;
+		transition: transform 0.3s ease;
+	}
+
+
+}
+
+.wp-block-button.is-style-with-arrow,
+.wp-block-button.is-style-outline-with-arrow {
+
+	:not(#masthead) & {
+		@media ($below-mobile) {
+				width: 100%;
+				flex-basis: 100%;
+			}
+		}
+}
+
+
+
+.wp-block-button.is-style-outline .wp-block-button__link {
+	padding: calc(1rem - 2px) 1.5rem;
+	border-width: 1px;
+}
+
+.wp-block-button.is-style-outline-with-arrow .wp-block-button__link {
+	background-color: transparent;
+	border-color: currentColor;
+    border-width: 1px;
+    border-style: solid;
+    color: currentColor;
+	padding: calc(1rem - 2px) 1.5rem;
+}
+
+.wp-block-button.is-style-outline.btn-prev-slide,
+.wp-block-button.is-style-outline.btn-next-slide {
+
+	a.wp-block-button__link {
+		padding: 0 !important;
+		width: 56px;
+		height: 56px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-width: 1px;
+	}
+    
+
+	&.disabled a.wp-block-button__link{
+		pointer-events: none;
+		opacity: 0.5;
+		filter: invert(0.5);
+	}
+
+}

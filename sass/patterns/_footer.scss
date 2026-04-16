@@ -1,0 +1,27 @@
+#colophon {
+
+    .footer-main-nav {
+        .wp-block-navigation__container {
+                width: 100%;
+                align-items: center;
+                padding:  0 var(--wp--style--root--padding-right)  2rem var(--wp--style--root--padding-right);
+                li.wp-block-navigation-item {
+                    
+                    &:nth-child(-n+3) {
+                        width: 100%;
+                        a.wp-block-navigation-item__content{
+                            // Estilos para las primeras 3 elementos de navegación
+                            font-size: var(--wp--preset--font-size--display) !important; 
+                            font-family: var(--wp--preset--font-family--font-heading);
+                            border-bottom: 1px solid var(--wp--preset--color--neutral-white);
+                            width: 100%;
+                            text-align: center;
+                            text-transform: capitalize;
+                        } 
+
+                    } 
+                    
+                }
+            }
+    }
+}
