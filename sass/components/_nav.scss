@@ -130,13 +130,7 @@ body.scrolled #masthead {
         position: fixed;
         right: 3rem;
     }
-
-    .wp-block-site-title {
-        position: fixed;
-        animation: fadeInNav 0.3s ease-in-out forwards;
-        color: var(--wp--preset--color--primary);
-    }
-
+    
      >.wp-block-group {
         transition: height 0.3s ease-in-out;
     }
