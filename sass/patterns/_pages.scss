@@ -16,7 +16,10 @@ main {
     #bottom-nav {
         position: sticky;
         bottom: 0;
-        backdrop-filter: blur(12px);
+        
+        .single-interiorismo & {
+            background-color: var(--wp--preset--color--neutral-30) !important;
+        }
     }
 }
 
