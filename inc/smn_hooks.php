@@ -69,3 +69,18 @@ add_filter('posts_orderby', function ($orderby, $query) {
 
     return $orderby;
 }, 999, 2);
+
+// Fallback final: mezcla los resultados en PHP para ese bloque específico.
+add_filter('the_posts', function ($posts, $query) {
+    if (
+        !$query instanceof WP_Query ||
+        !$query->get('smn_proyectos_relacionados_random') ||
+        count($posts) < 2
+    ) {
+        return $posts;
+    }
+
+    shuffle($posts);
+
+    return $posts;
+}, 999, 2);
