@@ -28,8 +28,8 @@ add_filter('render_block_data', function ($parsed_block) {
     if (
         isset($parsed_block['blockName']) &&
         $parsed_block['blockName'] === 'core/query' &&
-        isset($parsed_block['attrs']['anchor']) &&
-        $parsed_block['attrs']['anchor'] === 'proyectos-relacionados'
+        isset($parsed_block['attrs']['className']) &&
+        $parsed_block['attrs']['className'] === 'proyectos-relacionados'
     ) {
         $parsed_block['attrs']['query']['orderBy'] = 'rand';
         $parsed_block['attrs']['query']['order'] = 'asc';
