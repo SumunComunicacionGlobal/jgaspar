@@ -36,7 +36,36 @@ add_filter('query_loop_block_query_vars', function ($query, $block) {
         $query['orderby'] = 'rand';
         $query['order'] = 'DESC';
         $query['cache_results'] = false;
+        $query['ignore_sticky_posts'] = 1;
+        $query['no_found_rows'] = true;
+        $query['smn_proyectos_relacionados_random'] = true;
     }
 
     return $query;
 }, 10, 2);
+
+// Reafirma el orden aleatorio si otro filtro modifica el WP_Query después.
+add_action('pre_get_posts', function ($query) {
+    if (
+        is_admin() ||
+        !$query instanceof WP_Query ||
+        !$query->get('smn_proyectos_relacionados_random')
+    ) {
+        return;
+    }
+
+    $query->set('orderby', 'rand');
+    $query->set('order', 'DESC');
+    $query->set('cache_results', false);
+    $query->set('ignore_sticky_posts', 1);
+    $query->set('no_found_rows', true);
+}, 999);
+
+// Última capa: fuerza RAND() en el SQL de ese bucle específico.
+add_filter('posts_orderby', function ($orderby, $query) {
+    if ($query instanceof WP_Query && $query->get('smn_proyectos_relacionados_random')) {
+        return 'RAND()';
+    }
+
+    return $orderby;
+}, 999, 2);
