@@ -23,17 +23,20 @@ add_filter('render_block_data', function ($parsed_block) {
     return $parsed_block;
 });
 
-// Fuerza orden aleatorio en el Query Loop con ID #proyectos-relacionados
-add_filter('render_block_data', function ($parsed_block) {
+// Fuerza orden aleatorio para el Query Loop de proyectos relacionados.
+add_filter('query_loop_block_query_vars', function ($query, $block) {
+    $attrs = $block->parsed_block['attrs'] ?? [];
+    $class_name = $attrs['className'] ?? '';
+    $anchor = $attrs['anchor'] ?? '';
+
     if (
-        isset($parsed_block['blockName']) &&
-        $parsed_block['blockName'] === 'core/query' &&
-        isset($parsed_block['attrs']['className']) &&
-        $parsed_block['attrs']['className'] === 'proyectos-relacionados'
+        strpos($class_name, 'proyectos-relacionados') !== false ||
+        $anchor === 'proyectos-relacionados'
     ) {
-        $parsed_block['attrs']['query']['orderBy'] = 'rand';
-        $parsed_block['attrs']['query']['order'] = 'asc';
+        $query['orderby'] = 'rand';
+        $query['order'] = 'DESC';
+        $query['cache_results'] = false;
     }
 
-    return $parsed_block;
-});
+    return $query;
+}, 10, 2);
