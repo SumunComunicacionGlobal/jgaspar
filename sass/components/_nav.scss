@@ -125,11 +125,6 @@
 
 
 body.scrolled #masthead {
-    .wp-block-navigation__responsive-container-open { 
-        display: block;
-        position: fixed;
-        right: 3rem;
-    }
     
      >.wp-block-group {
         transition: height 0.3s ease-in-out;

@@ -186,7 +186,7 @@
 				{
 				"fontFace": [
 					{
-						"fontDisplay": "block",
+						"fontDisplay": "swap",
 						"fontFamily": "NewBlack",
 						"fontStretch": "normal",
 						"fontStyle": "normal",
@@ -196,7 +196,7 @@
 						]
 					},
 					{
-						"fontDisplay": "block",
+						"fontDisplay": "swap",
 						"fontFamily": "NewBlack",
 						"fontStretch": "normal",
 						"fontStyle": "normal",
