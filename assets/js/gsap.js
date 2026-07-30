@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
         return chars;
     }
     
-    // Verificar si el elemento existe
+    // Solo animar el titulo del post cuando exista en la plantilla actual
     const headingElement = document.querySelector(".wp-block-post-title");
     
     if (headingElement) {
@@ -66,8 +66,6 @@ document.addEventListener('DOMContentLoaded', function () {
             duration: 0.6,
             ease: "power2.out"
         });
-    } else {
-        console.error("Elemento .wp-block-post-title no encontrado");
     }
 
     //gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
