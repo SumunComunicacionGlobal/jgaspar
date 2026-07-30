@@ -16,6 +16,12 @@ main {
     #bottom-nav {
         position: sticky;
         bottom: 0;
+
+        .has-heading-4-font-size {
+            @media ($below-tablet) {
+                font-size: 1.2rem;
+            }
+        }
     }
 }
 
